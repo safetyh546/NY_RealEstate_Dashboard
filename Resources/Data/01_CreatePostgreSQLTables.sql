@@ -26,7 +26,6 @@ CREATE TABLE sales_stage (
    , building_class_at_time_of_sale varchar(1000)
    , sale_price money
    , sale_date date
-	
 );
 
 CREATE TABLE sales (
@@ -53,6 +52,7 @@ CREATE TABLE sales (
    , building_class_at_time_of_sale varchar(1000)
    , sale_price money
    , sale_date date
+   , sale_date_YYYYMM int	
 	
 );
 

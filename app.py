@@ -44,13 +44,14 @@ app.config['JSON_SORT_KEYS'] = False
 @app.route("/")
 @app.route("/home")
 def home():
+    return render_template("Index.html")
     # return render_template("index.html")
-    return (
-        f"Welcome to NYC Real Estate Sale Database API!<br/>"
-        f"This API contains NYC sale data for sales between 9/1/2016 and 8/31/2017<br/>"
-        f"Available Routes:<br/><br/>"
-        f"/Sales <br/>This route will dispaly total sales by borough<br/><br/>"
-    )
+    # return (
+    #     f"Welcome to NYC Real Estate Sale Database API!<br/>"
+    #     f"This API contains NYC sale data for sales between 9/1/2016 and 8/31/2017<br/>"
+    #     f"Available Routes:<br/><br/>"
+    #     f"/Sales <br/>This route will dispaly total sales by borough<br/><br/>"
+    # )
 
 @app.route("/Sales")
 #return a list of dictionaries with Borough name and Sale Count
@@ -65,6 +66,43 @@ def SaleCount():
         Borough_Dict_list.append(SaleDict)
     session.close()  
     return jsonify(Borough_Dict_list)
+
+@app.route("/SalesByMonth")
+#return a list of dictionaries with Month and Sale Count
+def SaleByMonth():
+    session = Session(engine)
+    SaleByMo = session.query(sales.sale_date_yyyymm,func.count(sales.sale_id)).group_by(sales.sale_date_yyyymm).order_by(sales.sale_date_yyyymm).all()
+    ByMonth_Dict_list = []
+    for m,ct in SaleByMo:
+        MonthDict = {}
+        MonthDict["Month"] = m
+        MonthDict["Sale count"] = ct
+        ByMonth_Dict_list.append(MonthDict)
+    session.close()  
+    return jsonify(ByMonth_Dict_list)    
+
+@app.route("/SalesByMonth/<Borough>")
+#return a list of dictionaries with Month and Sale Count for passed in borough
+def SaleByMonthByBorough(Borough):
+    session = Session(engine)
+    SaleByMoByBorough = session.query(sales.sale_date_yyyymm,func.count(sales.sale_id)).filter(sales.borough_name == Borough).group_by(sales.sale_date_yyyymm).order_by(sales.sale_date_yyyymm).all()
+    ByMonthBorough_Dict_list = []
+    for mb,ct1 in SaleByMoByBorough:
+        MonthBoroughDict = {}
+        MonthBoroughDict["Month"] = mb
+        MonthBoroughDict["Sale count"] = ct1
+        ByMonthBorough_Dict_list.append(MonthBoroughDict)
+    
+    #Create the outermost dictionary
+    #Set details to the list of dictionaries you created above InnerTagDictList
+    final_dict = {}
+    final_dict["Borough Name"] = Borough
+    final_dict["details"] = ByMonthBorough_Dict_list
+ 
+ 
+    session.close()  
+    return jsonify(final_dict)  
+
 
 if __name__ == "__main__":
     app.run(debug=True)        
