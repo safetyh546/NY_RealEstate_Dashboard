@@ -103,6 +103,30 @@ def SaleByMonthByBorough(Borough):
     session.close()  
     return jsonify(final_dict)  
 
+@app.route("/PricePerSquareFoot")
+#return a list of dictionaries with Month and Sale Count
+def PricePerSqFt():
+    session = Session(engine)
+    PricePerSqFt = session.query(sales.sale_date_yyyymm,func.count(sales.sale_id),func.sum(sales.price_per_gross_square_foot)).filter(sales.gross_square_feet > "0").group_by(sales.sale_date_yyyymm).order_by(sales.sale_date_yyyymm).all()
+    PricePerSqFt_Dict_list = []
+    MonthList = []
+    PPSList = []
+    for m,c,s in PricePerSqFt:
+        MonthPPSDict = {}
+        MonthPPSDict["Month"] = m
+        MonthPPSDict["Sale Count"] = c
+        MonthPPSDict["Avg Price Per Square Foot"] = round(float(s/c),2)
+        PricePerSqFt_Dict_list.append(MonthPPSDict)
+        MonthList.append(m)
+        PPSList.append(round(float(s/c),2))
+
+
+    LineDict = {}
+    LineDict["Month"] = MonthList
+    LineDict["PricePerSquareFoot"] = PPSList
+    session.close()  
+    #return jsonify(PricePerSqFt)
+    return jsonify(LineDict) 
 
 if __name__ == "__main__":
     app.run(debug=True)        

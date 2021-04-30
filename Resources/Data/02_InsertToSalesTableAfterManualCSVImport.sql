@@ -21,7 +21,8 @@ insert into sales (
    , building_class_at_time_of_sale
    , sale_price
    , sale_date
-   , sale_date_YYYYMM)
+   , sale_date_YYYYMM
+   , price_per_gross_square_foot)
  select 
    borough 
    , case 
@@ -46,17 +47,21 @@ insert into sales (
    , commercial_units
    , total_units
    , land_square_feet
-   , gross_square_feet
+   , case when gross_square_feet = ' -  ' then '0' else gross_square_feet end
    , year_built
    , tax_class_at_time_of_sale
    , building_class_at_time_of_sale
-   , sale_price
+   , CAST(sale_price AS NUMERIC)
    , sale_date
-   , cast(to_char(sale_date,'YYYYMM') as int)
+   , to_char(sale_date,'YYYY-MM')
+   , round(case when (case when gross_square_feet = ' -  ' then '0' else gross_square_feet end) = '0' then '0'
+      else    CAST(sale_price AS NUMERIC)/cast((case when gross_square_feet = ' -  ' then '0' else gross_square_feet end) as NUMERIC)
+	  end ::numeric,2)
    from sales_stage
    where sale_price <> ''
-   and sale_price > cast(500000 as money)
-   and sale_price < cast(800000 as money)
+   and CAST(sale_price AS NUMERIC) >= 500000.00  --cast(500000 as NUMERIC)
+   and CAST(sale_price AS NUMERIC) <= 800000.00  --cast(800000 as NUMERIC)
+
 
 /*
 --sales_stage checking queries
@@ -84,3 +89,10 @@ group by borough_name
 order by count(*) desc
 */
 
+
+select sale_date_YYYYMM,sum(sale_price),count(sale_id) 
+from  sales 
+where cast(gross_square_feet as int) > 0
+group by sale_date_YYYYMM  order by sale_date_YYYYMM
+
+select * from sales limit 1000

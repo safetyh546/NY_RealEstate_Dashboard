@@ -50,9 +50,12 @@ CREATE TABLE sales (
    , year_built int
    , tax_class_at_time_of_sale int
    , building_class_at_time_of_sale varchar(1000)
-   , sale_price money
+   , sale_price NUMERIC
    , sale_date date
-   , sale_date_YYYYMM int	
+   , sale_date_YYYYMM varchar(07)	
+   , price_per_gross_square_foot NUMERIC
 	
 );
+
+
 
