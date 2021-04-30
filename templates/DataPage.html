@@ -15,7 +15,7 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.html">Home
+          <a class="navbar-brand" href="{{ url_for('Index') }}">Home
           </a>
         </div>
       </div>
@@ -41,7 +41,7 @@
     
     <div>
       <h1 style="text-align:center">Click the Icon below to download the data</h1>
-        <a href="templates/nycrollingsales_Subset.csv" download>
+        <a href="../static/images/nycrollingsales_Subset.csv" download>
           <img src="../static/images/Download-Icon_0.png" alt='Download the Data Here' class='center'>
         </a>
     </div>
@@ -50,7 +50,7 @@
         <a href="https://www.kaggle.com/new-york-city/nyc-property-sales" >Check out this link to the data source on Kaggle</a>
     </div>
     <div>
-        <img src="kaggle_description.png" alt="Description of Data from Kaggle" width="1000" height="1000" class='center2'>
+        <img src="../static/images/kaggle_description.png" alt="Description of Data from Kaggle" width="1000" height="1000" class='center2'>
     </div>
     <footer class="footer">
       <span class="bottom">Magnificent 3</span>

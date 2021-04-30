@@ -42,8 +42,8 @@ app.config['JSON_SORT_KEYS'] = False
 # Flask Routes
 #################################################
 @app.route("/")
-@app.route("/home")
-def home():
+@app.route("/Index")
+def Index():
     return render_template("Index.html")
     # return render_template("index.html")
     # return (
