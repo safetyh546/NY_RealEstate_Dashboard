@@ -45,13 +45,7 @@ app.config['JSON_SORT_KEYS'] = False
 @app.route("/Index")
 def Index():
     return render_template("Index.html")
-    # return render_template("index.html")
-    # return (
-    #     f"Welcome to NYC Real Estate Sale Database API!<br/>"
-    #     f"This API contains NYC sale data for sales between 9/1/2016 and 8/31/2017<br/>"
-    #     f"Available Routes:<br/><br/>"
-    #     f"/Sales <br/>This route will dispaly total sales by borough<br/><br/>"
-    # )
+
 @app.route("/Visual1")
 def Visual1():
     return render_template("Visual1.html")
@@ -67,6 +61,20 @@ def Visual3():
 @app.route("/DataPage")
 def DataPage():
     return render_template("DataPage.html")
+
+@app.route("/BoroughDropDown")
+#return a list of dictionaries with Borough name and Sale Count
+def BoroughDropDown():
+    session = Session(engine)
+    Borough = session.query(sales.borough_name).group_by(sales.borough_name).order_by(sales.borough_name).all()
+    Borough_list = []
+    Borough_list.append("All")
+    for b in Borough:
+        Borough_list.append(b[0])
+    session.close()  
+
+    return jsonify(Borough_list)
+
 
 @app.route("/Sales")
 #return a list of dictionaries with Borough name and Sale Count
@@ -105,32 +113,26 @@ def SaleByMonthByBorough(Borough):
     for mb,ct1 in SaleByMoByBorough:
         MonthBoroughDict = {}
         MonthBoroughDict["Month"] = mb
-        MonthBoroughDict["Sale count"] = ct1
+        MonthBoroughDict["SaleCount"] = ct1
         ByMonthBorough_Dict_list.append(MonthBoroughDict)
     
-    #Create the outermost dictionary
-    #Set details to the list of dictionaries you created above InnerTagDictList
-    final_dict = {}
-    final_dict["Borough Name"] = Borough
-    final_dict["details"] = ByMonthBorough_Dict_list
- 
- 
     session.close()  
-    return jsonify(final_dict)  
+    return jsonify(ByMonthBorough_Dict_list)  
 
 @app.route("/PricePerSquareFoot")
 #return a list of dictionaries with Month and Sale Count
 def PricePerSqFt():
     session = Session(engine)
-    PricePerSqFt = session.query(sales.sale_date_yyyymm,func.count(sales.sale_id),func.sum(sales.price_per_gross_square_foot)).filter(sales.gross_square_feet > "0").group_by(sales.sale_date_yyyymm).order_by(sales.sale_date_yyyymm).all()
+    PricePerSqFt = session.query(sales.borough_name,func.min(sales.sale_price),func.count(sales.sale_id),func.sum(sales.price_per_gross_square_foot)).filter(sales.gross_square_feet > "0").group_by(sales.borough_name).all()
     PricePerSqFt_Dict_list = []
     MonthList = []
     PPSList = []
-    for m,c,s in PricePerSqFt:
+    for b,m,c,s in PricePerSqFt:
         MonthPPSDict = {}
-        MonthPPSDict["Month"] = m
-        MonthPPSDict["Sale Count"] = c
-        MonthPPSDict["Avg Price Per Square Foot"] = round(float(s/c),2)
+        MonthPPSDict["Borough"] = b
+        MonthPPSDict["MinSalePrice"] = float(m)
+        MonthPPSDict["SaleCount"] = c
+        MonthPPSDict["AvgPricePerSquareFoot"] = round(float(s/c),2)
         PricePerSqFt_Dict_list.append(MonthPPSDict)
         MonthList.append(m)
         PPSList.append(round(float(s/c),2))
@@ -141,7 +143,7 @@ def PricePerSqFt():
     LineDict["PricePerSquareFoot"] = PPSList
     session.close()  
     #return jsonify(PricePerSqFt)
-    return jsonify(LineDict) 
+    return jsonify(PricePerSqFt_Dict_list) 
 
 if __name__ == "__main__":
     app.run(debug=True)        
