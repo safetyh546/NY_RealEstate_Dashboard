@@ -52,6 +52,21 @@ def home():
     #     f"Available Routes:<br/><br/>"
     #     f"/Sales <br/>This route will dispaly total sales by borough<br/><br/>"
     # )
+@app.route("/Visual1")
+def Visual1():
+    return render_template("Visual1.html")
+
+@app.route("/Visual2")
+def Visual2():
+    return render_template("Visual2.html")
+
+@app.route("/Visual3")
+def Visual3():
+    return render_template("Visual3.html")
+
+@app.route("/DataPage")
+def DataPage():
+    return render_template("DataPage.html")
 
 @app.route("/Sales")
 #return a list of dictionaries with Borough name and Sale Count
@@ -62,7 +77,7 @@ def SaleCount():
     for b,ct in SaleCount:
         SaleDict = {}
         SaleDict["Borough"] = b
-        SaleDict["Sale count"] = ct
+        SaleDict["SaleCount"] = ct
         Borough_Dict_list.append(SaleDict)
     session.close()  
     return jsonify(Borough_Dict_list)
@@ -76,7 +91,7 @@ def SaleByMonth():
     for m,ct in SaleByMo:
         MonthDict = {}
         MonthDict["Month"] = m
-        MonthDict["Sale count"] = ct
+        MonthDict["SaleCount"] = ct
         ByMonth_Dict_list.append(MonthDict)
     session.close()  
     return jsonify(ByMonth_Dict_list)    
