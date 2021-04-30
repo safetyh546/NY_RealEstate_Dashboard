@@ -86,14 +86,29 @@ a:hover{
   background-color: #C6E9FF;
 }
 
-/* This CSS styles the ufo icon in the navbar */
-.nav-ufo {
-  position: absolute;
-  bottom: 5px;
-  left: 150px;
-  width: 35px;
-  color: white;
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 200px;
 }
+.center2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1000px;
+  height: 1000px;
+}
+
+a{
+  text-decoration:none;
+}
+#indented {
+  text-indent: 555px;
+}
+
+
 
 /* Adding styles to the aside and filter form */
 .ufo-form {
