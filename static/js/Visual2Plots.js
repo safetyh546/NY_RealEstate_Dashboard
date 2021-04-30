@@ -1,3 +1,4 @@
+
 console.log("Hello")
 d3.json("Sales").then((importedData) => {
     console.log(importedData);
@@ -37,7 +38,7 @@ d3.json("Sales").then((importedData) => {
 
   // Apply the group bar mode to the layout
   var layout = {
-    title: "NYC Sales By Borough",
+    title: "NYC Sales By Borough <br /> September 2016 through August 2017",
     margin: {
       l: 500,
       r: 500,
