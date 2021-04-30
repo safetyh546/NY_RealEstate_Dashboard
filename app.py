@@ -130,7 +130,6 @@ def PricePerSqFt():
     for b,m,c,s in PricePerSqFt:
         MonthPPSDict = {}
         MonthPPSDict["Borough"] = b
-        MonthPPSDict["MinSalePrice"] = float(m)
         MonthPPSDict["SaleCount"] = c
         MonthPPSDict["AvgPricePerSquareFoot"] = round(float(s/c),2)
         PricePerSqFt_Dict_list.append(MonthPPSDict)
