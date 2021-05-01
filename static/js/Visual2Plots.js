@@ -40,8 +40,8 @@ d3.json("Sales").then((importedData) => {
   var layout = {
     title: "NYC Sales By Borough <br /> September 2016 through August 2017",
     margin: {
-      l: 500,
-      r: 500,
+      l: 250,
+      r: 250,
       t: 100,
       b: 100
     },

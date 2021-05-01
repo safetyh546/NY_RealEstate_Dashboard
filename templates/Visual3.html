@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <link rel="stylesheet" href="../static/css/style.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
@@ -38,13 +39,37 @@
       <h1>NYC Real Estate</h1>
       <p>Where should you invest?</p>
     </div>
+    <!-- <div class="col-md-2"> -->
+    <!-- </div> -->
+    <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-7 ">
+        <h1 class="text-left text-secondary">Avg Price Per Square Foot</h1>
+        <div class="TextBox ">
+
+          <p>The 5 boroughs had similar Avg Price Per Square Foot results, with a range of $148.47 per foot in Manhattan to $424.04 in Queens.
+            It's notable that the data contained several sales where the gross square feet was not provided. 
+            We excluded such sales in our price per square feet calculations leaving around 9000 sales.
+            Because of this, Manhattan had only 14 sales remaining which we expect explains its unexpected lower price per square foot.
+            </p>
+    
+        </div>
+      </div>
+
+      <div class="col-md-10">
+        <div id="bubble"></div>
+      </div>
+
+
+    </div>
+  </div>
 
     <footer class="footer">
       <span class="bottom">Magnificent 3</span>
     </footer>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
-  <script src="static/js/data.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="static/js/Visual3Plots.js"></script>
   <script src="static/js/app.js"></script>
 </body>
 

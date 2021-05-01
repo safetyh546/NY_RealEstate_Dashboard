@@ -144,5 +144,7 @@ def PricePerSqFt():
     #return jsonify(PricePerSqFt)
     return jsonify(PricePerSqFt_Dict_list) 
 
+
+
 if __name__ == "__main__":
     app.run(debug=True)        

@@ -67,8 +67,8 @@ d3.json("BoroughDropDown").then((data) =>{
         title: `Sales By Month - ${Borough}`,
         // title: `${stock} closing prices`,
         margin: {
-            l: 500,
-            r: 500,
+            l: 200,
+            r: 200,
             t: 100,
             b: 100
           },
