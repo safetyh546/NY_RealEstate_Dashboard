@@ -1,4 +1,7 @@
-# Project2
+# Group Project Members
+1) Juan Rodriguez https://github.com/juanmarodri<br />
+2) Isaiah Peek https://github.com/ipeek-cpu <br />
+3) Maxbooz Homidas https://github.com/safetyh546 <br />
 
 ##  NYC Real Estate Sales Dashboard
 1) The dashboard is powered by a PostgresSQL Database, Flask API, javascript files using plotly and d3/jquery libraries, and HTML/CSS front end pages
