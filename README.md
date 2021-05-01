@@ -1,7 +1,7 @@
 # Project2
 
 ##  NYC Real Estate Sales Dashboard
-1) The dashboard is powered by a PostgresSQL Database, Flask API, and HTML/CSS front end pages
+1) The dashboard is powered by a PostgresSQL Database, Flask API, javascript files using plotly and d3/jquery libraries, and HTML/CSS front end pages
 2) The data visualized in this dashboard originally came from the Kaggle website which had a concatenated and cleaned-up version of the New York City Department of Finance’s Rolling Real Estate Sales dataset. It contained real estate sales data for September 2016 through August 2017. The data had over 80 thousand rows. We limited our analysis to only the real estate sale price range of $500,000-$800,000. The resulting data in that price range had several rows where the square feet listed was 0 or not provided. We excluded such rows when looking at the price per square feet analysis.<br />
 
 ## Files used to create the dashboard
