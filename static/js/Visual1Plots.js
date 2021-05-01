@@ -73,14 +73,16 @@ d3.json("BoroughDropDown").then((data) =>{
             b: 100
           },
         xaxis: {
+          title: "Month",
           range: [StartMonth, EndMonth],
           type: "date",
           titlefont: {
-            size: 20,
+            size: 15,
             color: 'rgb(107, 107, 107)'
           },
         },
         yaxis: {
+          title: "Sales",
           autorange: true,
           type: "linear",
         },

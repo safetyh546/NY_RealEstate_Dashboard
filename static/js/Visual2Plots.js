@@ -51,10 +51,13 @@ d3.json("Sales").then((importedData) => {
         size: 20,
         color: 'rgb(107, 107, 107)'
       },
-      yaxis: {tickfont: {
+      yaxis: {
+        title: "Borough",
+        tickfont: {
         size: 24,
         color: 'rgb(107, 107, 107)'
-      }},
+      }
+    },
     }
    
   };
