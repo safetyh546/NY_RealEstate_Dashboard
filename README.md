@@ -31,4 +31,4 @@
 
 ## Next steps if we had more time
 1) Create a page with a map of the property addresses<br />
-2) Could also use the app selection to choose a bureau and filter plotly charts<br />
+2) Could also use the map selection to choose a bureau and filter plotly charts<br />
