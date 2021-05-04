@@ -20,15 +20,15 @@
 10) Resources\Data - .sql files used to create postgresSQL tables and the csv of datasets<br />
 
 ## Data Analysis Questions Researched
-1) When are most sales happening in NYC?  Visualization 1 sought to answher this with a line chart showing by Sales By Month.  This visual is filterable by borough<br />
+1) When are most sales happening in NYC?  Visualization 1 sought to answer this with a line chart showing Sales By Month.  This visual is filterable by borough<br />
 2) Where are most sales occurring in NYC?  Visualization 2 is a barchart of sales by borough.  It shows Queens has highest sale count.<br />
 3) How much property can you get for your money in NYC?  Visualization 3 shows Price per square feet per borough.  Queens again has the highest price per square foot.<br />
 
 ## Conclusions
-1) When selling in NYC, highest frequency will be in summer<br />
+1) When selling in NYC, highest frequency will be in summer, specifically June<br />
 2) If buying, fewer sales occur in colder months but prices may be lower due to lower demand<br />
-3) Based on the data we have, Queens has the highest frequency of sales but it's alsmot the most expensive per square foot<br />
+3) Based on the data we have, Queens has the highest frequency of sales but it's also the most expensive per square foot<br />
 
 ## Next steps if we had more time
 1) Create a page with a map of the property addresses<br />
-2) Could also use the map selection to choose a bureau and filter plotly charts<br />
+2) Could also use the map selection to choose a borough and filter plotly charts<br />
